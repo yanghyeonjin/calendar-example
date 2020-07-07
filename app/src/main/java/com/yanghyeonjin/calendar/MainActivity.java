@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 
 public class MainActivity extends AppCompatActivity {
     private MaterialCalendarView calendarView;
@@ -22,7 +25,19 @@ public class MainActivity extends AppCompatActivity {
         context = MainActivity.this;
 
 
+        // 아이디 연결
         calendarView = findViewById(R.id.calendarView);
-        Toast.makeText(context, String.valueOf(calendarView.getSelectedDates()), Toast.LENGTH_SHORT).show();
+
+
+        // 타이틀 포맷
+        TitleFormatter titleFormatter = new TitleFormatter() {
+            @Override
+            public CharSequence format(CalendarDay day) {
+                day.getYear();
+                day.getMonth();
+                return day.getYear() + "년 " + day.getMonth() + "월";
+            }
+        };
+        calendarView.setTitleFormatter(titleFormatter);
     }
 }
