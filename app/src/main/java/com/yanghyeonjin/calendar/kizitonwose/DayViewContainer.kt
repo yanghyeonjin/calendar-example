@@ -6,5 +6,5 @@ import com.kizitonwose.calendarview.ui.ViewContainer
 import kotlinx.android.synthetic.main.layout_calendar_day.view.*
 
 class DayViewContainer(view: View) : ViewContainer(view) {
-    val textVIew: TextView = view.calendarDayText
+    val textView: TextView = view.calendarDayText
 }

@@ -1,11 +1,13 @@
 package com.yanghyeonjin.calendar.kizitonwose
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
+import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.yanghyeonjin.calendar.R
@@ -21,6 +23,8 @@ class CalendarViewActivity : AppCompatActivity() {
 
         AndroidThreeTen.init(this)
 
+
+        // day
         calendarView.dayBinder = object : DayBinder<DayViewContainer> {
             // Called only when a new container is needed.
             override fun create(view: View): DayViewContainer {
@@ -29,10 +33,20 @@ class CalendarViewActivity : AppCompatActivity() {
 
             // Called every time we need to reuse a container.
             override fun bind(container: DayViewContainer, day: CalendarDay) {
-                container.textVIew.text = day.date.dayOfMonth.toString()
+                // 일자 표시
+                container.textView.text = day.date.dayOfMonth.toString()
+
+                // 현재 달에 포함되는 일자와 이전/다음 달에 포함되는 일자의 색 구분
+                if (day.owner == DayOwner.THIS_MONTH) {
+                    container.textView.setTextColor(Color.GREEN)
+                } else {
+                    container.textView.setTextColor(Color.GRAY)
+                }
             }
         }
 
+
+        // month header
         calendarView.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer> {
             override fun create(view: View): MonthViewContainer {
                 return MonthViewContainer(view)
