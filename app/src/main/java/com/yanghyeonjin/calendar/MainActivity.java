@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -15,9 +16,9 @@ import java.util.ArrayList;
 
 
 /**
- * TODO dot size
  * TODO date click listener
  * TODO default date (오늘 날짜로 선택되어 있도록)
+ * TODO 선택된 날짜의 event dot color 바꾸기
  */
 
 public class MainActivity extends AppCompatActivity {
@@ -55,19 +56,26 @@ public class MainActivity extends AppCompatActivity {
         // add multiple event dots per day
         CalendarDay day1 = CalendarDay.from(2020, 7,1);
         CalendarDay day2 = CalendarDay.from(2020, 7,2);
-        CalendarDay day3 = CalendarDay.from(2020, 7,3);
-        CalendarDay day4 = CalendarDay.from(2020, 7,4);
         ArrayList<CalendarDay> days = new ArrayList<>();
         ArrayList<CalendarDay> days2 = new ArrayList<>();
-        ArrayList<CalendarDay> days3 = new ArrayList<>();
-        ArrayList<CalendarDay> days4 = new ArrayList<>();
         days.add(day1);
         days2.add(day2);
-        days3.add(day3);
-        days4.add(day4);
         int[] threeColors = {Color.rgb(0, 0, 255), Color.rgb(0, 255, 0), Color.rgb(255, 0, 0)};
         int[] twoColors = {Color.rgb(3, 100, 100), Color.rgb(5, 200, 0)};
-        calendarView.addDecorators(new EventDecorator(threeColors, days));
-        calendarView.addDecorators(new EventDecorator(twoColors, days2));
+        calendarView.addDecorators(new MultipleEventDecorator(threeColors, days));
+        calendarView.addDecorators(new MultipleEventDecorator(twoColors, days2));
+
+
+        // add one dot
+        ArrayList<CalendarDay> days5 = new ArrayList<>();
+        CalendarDay day5 = CalendarDay.from(2020, 7,5);
+        CalendarDay day6 = CalendarDay.from(2020, 7,6);
+        CalendarDay day7 = CalendarDay.from(2020, 7,7);
+        CalendarDay day8 = CalendarDay.from(2020, 7,8);
+        days5.add(day5);
+        days5.add(day6);
+        days5.add(day7);
+        days5.add(day8);
+        calendarView.addDecorators(new OneEventDecorator(ContextCompat.getColor(context, R.color.selectionColor), days5));
     }
 }
