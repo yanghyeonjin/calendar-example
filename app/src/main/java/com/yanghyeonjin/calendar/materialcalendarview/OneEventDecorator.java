@@ -1,22 +1,22 @@
-package com.yanghyeonjin.calendar;
+package com.yanghyeonjin.calendar.materialcalendarview;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
+import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-public class MultipleEventDecorator implements DayViewDecorator {
-
-    private final int[] colors;
+public class OneEventDecorator implements DayViewDecorator {
+    private final int color;
     private final HashSet<CalendarDay> dates;
 
-
-    public MultipleEventDecorator(int[] colors, Collection<CalendarDay> dates) {
-        this.colors = colors;
+    public OneEventDecorator(int color, Collection<CalendarDay> dates) {
+        this.color = color;
         this.dates = new HashSet<>(dates);
     }
+
 
     @Override
     public boolean shouldDecorate(CalendarDay day) {
@@ -25,6 +25,6 @@ public class MultipleEventDecorator implements DayViewDecorator {
 
     @Override
     public void decorate(DayViewFacade view) {
-        view.addSpan(new CustomMultipleDotSpan(10, colors));
+        view.addSpan(new DotSpan(10, color));
     }
 }

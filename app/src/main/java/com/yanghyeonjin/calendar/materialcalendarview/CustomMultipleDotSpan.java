@@ -1,4 +1,4 @@
-package com.yanghyeonjin.calendar;
+package com.yanghyeonjin.calendar.materialcalendarview;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
