@@ -1,6 +1,5 @@
 package com.yanghyeonjin.calendar.kizitonwose
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -48,12 +47,12 @@ class CalendarViewActivity : AppCompatActivity() {
 
 
         // month header
-        calendarView.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer> {
-            override fun create(view: View): MonthViewContainer {
-                return MonthViewContainer(view)
+        calendarView.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthHeaderViewContainer> {
+            override fun create(view: View): MonthHeaderViewContainer {
+                return MonthHeaderViewContainer(view)
             }
 
-            override fun bind(container: MonthViewContainer, month: CalendarMonth) {
+            override fun bind(container: MonthHeaderViewContainer, month: CalendarMonth) {
                 container.tvHeaderMonth.text = "${month.yearMonth.year}년 ${month.yearMonth.monthValue}월"
             }
         }
