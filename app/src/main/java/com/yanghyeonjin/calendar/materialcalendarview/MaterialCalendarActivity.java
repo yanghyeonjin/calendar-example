@@ -3,6 +3,7 @@ package com.yanghyeonjin.calendar.materialcalendarview;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,7 +48,7 @@ public class MaterialCalendarActivity extends AppCompatActivity {
 
         // 리사이클러뷰 셋팅
         rvEvents.setHasFixedSize(true);
-        gridLayoutManager = new GridLayoutManager(context, 4);
+        gridLayoutManager = new GridLayoutManager(context, 2);
         rvEvents.setLayoutManager(gridLayoutManager);
 
         events = new ArrayList<>();

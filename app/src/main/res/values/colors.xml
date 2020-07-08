@@ -8,6 +8,7 @@
     <!-- material calendar color -->
     <color name="materialCalSelectedBgColor">#66FF8A80</color>
     <color name="materialCalDotColor">#BAFF8A80</color>
+    <color name="materialCalEventBgColor">#C5CAE9</color>
 
 
     <!-- kizitonwose calendar -->
