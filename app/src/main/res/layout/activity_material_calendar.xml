@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:mcv_selectionColor="@color/selectionColor"
+        app:mcv_selectionColor="@color/materialCalSelectedBgColor"
         app:mcv_showOtherDates="all"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

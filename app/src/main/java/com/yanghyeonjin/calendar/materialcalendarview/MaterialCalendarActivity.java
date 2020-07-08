@@ -52,16 +52,16 @@ public class MaterialCalendarActivity extends AppCompatActivity {
 
 
         // add multiple event dots per day
-        CalendarDay day1 = CalendarDay.from(2020, 7,1);
-        CalendarDay day2 = CalendarDay.from(2020, 7,2);
-        ArrayList<CalendarDay> days = new ArrayList<>();
-        ArrayList<CalendarDay> days2 = new ArrayList<>();
-        days.add(day1);
-        days2.add(day2);
-        int[] threeColors = {Color.rgb(0, 0, 255), Color.rgb(0, 255, 0), Color.rgb(255, 0, 0)};
-        int[] twoColors = {Color.rgb(3, 100, 100), Color.rgb(5, 200, 0)};
-        calendarView.addDecorators(new MultipleEventDecorator(threeColors, days));
-        calendarView.addDecorators(new MultipleEventDecorator(twoColors, days2));
+//        CalendarDay day1 = CalendarDay.from(2020, 7,1);
+//        CalendarDay day2 = CalendarDay.from(2020, 7,2);
+//        ArrayList<CalendarDay> days = new ArrayList<>();
+//        ArrayList<CalendarDay> days2 = new ArrayList<>();
+//        days.add(day1);
+//        days2.add(day2);
+//        int[] threeColors = {Color.rgb(0, 0, 255), Color.rgb(0, 255, 0), Color.rgb(255, 0, 0)};
+//        int[] twoColors = {Color.rgb(3, 100, 100), Color.rgb(5, 200, 0)};
+//        calendarView.addDecorators(new MultipleEventDecorator(threeColors, days));
+//        calendarView.addDecorators(new MultipleEventDecorator(twoColors, days2));
 
 
         // add one dot
@@ -74,6 +74,6 @@ public class MaterialCalendarActivity extends AppCompatActivity {
         days5.add(day6);
         days5.add(day7);
         days5.add(day8);
-        calendarView.addDecorators(new OneEventDecorator(ContextCompat.getColor(context, R.color.selectionColor), days5));
+        calendarView.addDecorators(new OneEventDecorator(ContextCompat.getColor(context, R.color.materialCalDotColor), days5));
     }
 }

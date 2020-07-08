@@ -5,8 +5,9 @@
     <color name="colorAccent">#03DAC5</color>
 
 
-    <!-- calendar color -->
-    <color name="selectionColor">#B388FF</color>
+    <!-- material calendar color -->
+    <color name="materialCalSelectedBgColor">#66FF8A80</color>
+    <color name="materialCalDotColor">#BAFF8A80</color>
 
 
     <!-- kizitonwose calendar -->
