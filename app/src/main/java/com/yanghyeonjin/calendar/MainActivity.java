@@ -5,8 +5,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -14,8 +12,13 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+
+
+/**
+ * TODO dot size
+ * TODO date click listener
+ * TODO default date (오늘 날짜로 선택되어 있도록)
+ */
 
 public class MainActivity extends AppCompatActivity {
     private MaterialCalendarView calendarView;
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         days3.add(day3);
         days4.add(day4);
         int[] threeColors = {Color.rgb(0, 0, 255), Color.rgb(0, 255, 0), Color.rgb(255, 0, 0)};
-        int[] twoColors = {R.color.colorAccent, R.color.colorPrimary};
+        int[] twoColors = {Color.rgb(3, 100, 100), Color.rgb(5, 200, 0)};
         calendarView.addDecorators(new EventDecorator(threeColors, days));
         calendarView.addDecorators(new EventDecorator(twoColors, days2));
     }
