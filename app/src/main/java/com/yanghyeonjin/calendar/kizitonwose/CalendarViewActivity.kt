@@ -2,6 +2,7 @@ package com.yanghyeonjin.calendar.kizitonwose
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -12,11 +13,14 @@ import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.yanghyeonjin.calendar.R
 import kotlinx.android.synthetic.main.activity_calendar_view.*
+import org.threeten.bp.LocalDate
 import org.threeten.bp.YearMonth
 import org.threeten.bp.temporal.WeekFields
 import java.util.*
 
 class CalendarViewActivity : AppCompatActivity() {
+    private val TAG: String = "CalendarView"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar_view)
@@ -41,6 +45,11 @@ class CalendarViewActivity : AppCompatActivity() {
                     container.textView.setTextColor(ContextCompat.getColor(this@CalendarViewActivity, R.color.calDayOfThisMonthColor))
                 } else {
                     container.textView.setTextColor(ContextCompat.getColor(this@CalendarViewActivity, R.color.calDayOfOtherMonthColor))
+                }
+
+                // 오늘 날짜 선택되어 있도록
+                if (day.date == LocalDate.now()) {
+                    container.textView.background = ContextCompat.getDrawable(this@CalendarViewActivity, R.drawable.calendar_selected_day_bg)
                 }
             }
         }
