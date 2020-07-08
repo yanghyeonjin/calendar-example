@@ -4,6 +4,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
@@ -38,9 +39,9 @@ class CalendarViewActivity : AppCompatActivity() {
 
                 // 현재 달에 포함되는 일자와 이전/다음 달에 포함되는 일자의 색 구분
                 if (day.owner == DayOwner.THIS_MONTH) {
-                    container.textView.setTextColor(Color.GREEN)
+                    container.textView.setTextColor(ContextCompat.getColor(this@CalendarViewActivity, R.color.calDayOfThisMonthColor))
                 } else {
-                    container.textView.setTextColor(Color.GRAY)
+                    container.textView.setTextColor(ContextCompat.getColor(this@CalendarViewActivity, R.color.calDayOfOtherMonthColor))
                 }
             }
         }

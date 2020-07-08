@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimaryDark">#FF8A80</color>
     <color name="colorAccent">#03DAC5</color>
 
 
     <!-- calendar color -->
     <color name="selectionColor">#B388FF</color>
+
+
+    <!-- kizitonwose calendar -->
+    <color name="calHeaderBgColor">#FF5252</color>
+    <color name="calDayBgColor">#BAFF8A80</color>
+    <color name="calHeaderTitleColor">#ffffff</color>
+    <color name="calDayOfThisMonthColor">#ffffff</color>
+    <color name="calDayOfOtherMonthColor">#C5CAE9</color>
 </resources>
