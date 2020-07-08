@@ -2,6 +2,7 @@ package com.yanghyeonjin.calendar;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -48,16 +49,22 @@ public class MainActivity extends AppCompatActivity {
         calendarView.setTitleFormatter(titleFormatter);
 
 
-        // dot event
+        // add multiple event dots per day
         CalendarDay day1 = CalendarDay.from(2020, 7,1);
         CalendarDay day2 = CalendarDay.from(2020, 7,2);
         CalendarDay day3 = CalendarDay.from(2020, 7,3);
         CalendarDay day4 = CalendarDay.from(2020, 7,4);
         ArrayList<CalendarDay> days = new ArrayList<>();
+        ArrayList<CalendarDay> days2 = new ArrayList<>();
+        ArrayList<CalendarDay> days3 = new ArrayList<>();
+        ArrayList<CalendarDay> days4 = new ArrayList<>();
         days.add(day1);
-        days.add(day2);
-        days.add(day3);
-        days.add(day4);
-        calendarView.addDecorators(new EventDecorator(R.color.colorAccent, days));
+        days2.add(day2);
+        days3.add(day3);
+        days4.add(day4);
+        int[] threeColors = {Color.rgb(0, 0, 255), Color.rgb(0, 255, 0), Color.rgb(255, 0, 0)};
+        int[] twoColors = {R.color.colorAccent, R.color.colorPrimary};
+        calendarView.addDecorators(new EventDecorator(threeColors, days));
+        calendarView.addDecorators(new EventDecorator(twoColors, days2));
     }
 }
