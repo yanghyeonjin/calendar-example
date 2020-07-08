@@ -1,81 +1,58 @@
 package com.yanghyeonjin.calendar;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
-
-import java.util.ArrayList;
+import com.yanghyeonjin.calendar.cosmocalendar.CosmoCalendarActivity;
+import com.yanghyeonjin.calendar.kizitonwose.CalendarViewActivity;
+import com.yanghyeonjin.calendar.materialcalendarview.MaterialCalendarActivity;
 
 
-/**
- * TODO date click listener
- * TODO default date (오늘 날짜로 선택되어 있도록)
- * TODO 선택된 날짜의 event dot color 바꾸기
- */
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-public class MainActivity extends AppCompatActivity {
-    private MaterialCalendarView calendarView;
-
-    private static final String TAG = "MainActivity";
-    private Context context;
-    private Activity activity;
+    private Button btnCosmo, btnCalendarView, btnMaterial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        context = MainActivity.this;
-        activity = MainActivity.this;
-
-
         // 아이디 연결
-        calendarView = findViewById(R.id.calendarView);
+        btnCosmo = findViewById(R.id.btnCosmoCalendar);
+        btnCalendarView = findViewById(R.id.btnCalendarView);
+        btnMaterial = findViewById(R.id.btnMaterialCalendar);
 
 
-        // 타이틀 포맷
-        TitleFormatter titleFormatter = new TitleFormatter() {
-            @Override
-            public CharSequence format(CalendarDay day) {
-                day.getYear();
-                day.getMonth();
-                return day.getYear() + "년 " + day.getMonth() + "월";
-            }
-        };
-        calendarView.setTitleFormatter(titleFormatter);
 
+        // 클릭 리스너
+        btnCosmo.setOnClickListener(this);
+        btnCalendarView.setOnClickListener(this);
+        btnMaterial.setOnClickListener(this);
 
-        // add multiple event dots per day
-        CalendarDay day1 = CalendarDay.from(2020, 7,1);
-        CalendarDay day2 = CalendarDay.from(2020, 7,2);
-        ArrayList<CalendarDay> days = new ArrayList<>();
-        ArrayList<CalendarDay> days2 = new ArrayList<>();
-        days.add(day1);
-        days2.add(day2);
-        int[] threeColors = {Color.rgb(0, 0, 255), Color.rgb(0, 255, 0), Color.rgb(255, 0, 0)};
-        int[] twoColors = {Color.rgb(3, 100, 100), Color.rgb(5, 200, 0)};
-        calendarView.addDecorators(new MultipleEventDecorator(threeColors, days));
-        calendarView.addDecorators(new MultipleEventDecorator(twoColors, days2));
+    }
 
+    @Override
+    public void onClick(View view) {
+        Log.e("Main", String.valueOf(view.getId()));
 
-        // add one dot
-        ArrayList<CalendarDay> days5 = new ArrayList<>();
-        CalendarDay day5 = CalendarDay.from(2020, 7,5);
-        CalendarDay day6 = CalendarDay.from(2020, 7,6);
-        CalendarDay day7 = CalendarDay.from(2020, 7,7);
-        CalendarDay day8 = CalendarDay.from(2020, 7,8);
-        days5.add(day5);
-        days5.add(day6);
-        days5.add(day7);
-        days5.add(day8);
-        calendarView.addDecorators(new OneEventDecorator(ContextCompat.getColor(context, R.color.selectionColor), days5));
+        switch (view.getId()) {
+            case R.id.btnCosmoCalendar:
+                Intent cosmoIntent = new Intent(MainActivity.this, CosmoCalendarActivity.class);
+                startActivity(cosmoIntent);
+                break;
+            case R.id.btnCalendarView:
+                Intent calendarViewIntent = new Intent(MainActivity.this, CalendarViewActivity.class);
+                startActivity(calendarViewIntent);
+                break;
+            case R.id.btnMaterialCalendar:
+                Intent materialIntent = new Intent(MainActivity.this, MaterialCalendarActivity.class);
+                startActivity(materialIntent);
+                break;
+        }
     }
 }
