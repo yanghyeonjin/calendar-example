@@ -1,18 +1,20 @@
 package com.yanghyeonjin.calendar.materialcalendarview;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
-import com.yanghyeonjin.calendar.MainActivity;
-import com.yanghyeonjin.calendar.MultipleEventDecorator;
 import com.yanghyeonjin.calendar.OneEventDecorator;
 import com.yanghyeonjin.calendar.R;
 
@@ -20,11 +22,16 @@ import java.util.ArrayList;
 
 public class MaterialCalendarActivity extends AppCompatActivity {
 
-    private MaterialCalendarView calendarView;
+    private MaterialCalendarView materialCalendar;
 
     private static final String TAG = "MainActivity";
     private Context context;
     private Activity activity;
+
+    private RecyclerView rvEvents;
+    private RecyclerView.LayoutManager gridLayoutManager;
+    private RecyclerView.Adapter eventAdapter;
+    private ArrayList<Event> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +43,33 @@ public class MaterialCalendarActivity extends AppCompatActivity {
 
 
         // 아이디 연결
-        calendarView = findViewById(R.id.calendarView);
+        materialCalendar = findViewById(R.id.calendarView);
+        rvEvents = findViewById(R.id.rvEvents);
+
+
+        // 리사이클러뷰 셋팅
+        rvEvents.setHasFixedSize(true);
+        gridLayoutManager = new GridLayoutManager(context, 4);
+        rvEvents.setLayoutManager(gridLayoutManager);
+
+        events = new ArrayList<>();
+        events.add(new Event("이벤트1"));
+        events.add(new Event("이벤트2"));
+        events.add(new Event("이벤트3"));
+
+
+        eventAdapter = new EventAdapter(events, context);
+        rvEvents.setAdapter(eventAdapter);
 
 
         // 타이틀 포맷
         TitleFormatter titleFormatter = new TitleFormatter() {
             @Override
             public CharSequence format(CalendarDay day) {
-                day.getYear();
-                day.getMonth();
                 return day.getYear() + "년 " + day.getMonth() + "월";
             }
         };
-        calendarView.setTitleFormatter(titleFormatter);
+        materialCalendar.setTitleFormatter(titleFormatter);
 
 
         // add multiple event dots per day
@@ -74,6 +95,17 @@ public class MaterialCalendarActivity extends AppCompatActivity {
         days5.add(day6);
         days5.add(day7);
         days5.add(day8);
-        calendarView.addDecorators(new OneEventDecorator(ContextCompat.getColor(context, R.color.materialCalDotColor), days5));
+        materialCalendar.addDecorators(new OneEventDecorator(ContextCompat.getColor(context, R.color.materialCalDotColor), days5));
+
+
+        // date click 리스너
+        materialCalendar.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                Event event = new Event(date.getDate().toString());
+                events.add(event);
+                eventAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }

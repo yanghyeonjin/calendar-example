@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        Log.e("Main", String.valueOf(view.getId()));
-
         switch (view.getId()) {
             case R.id.btnCosmoCalendar:
                 Intent cosmoIntent = new Intent(MainActivity.this, CosmoCalendarActivity.class);

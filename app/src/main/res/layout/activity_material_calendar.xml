@@ -17,4 +17,12 @@
         app:mcv_selectionColor="@color/materialCalSelectedBgColor"
         app:mcv_showOtherDates="all"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEvents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
