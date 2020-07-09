@@ -263,4 +263,8 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
+
+# secret key (like kakao API key)
+keys.xml
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,android,androidstudio,java
