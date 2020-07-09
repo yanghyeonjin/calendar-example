@@ -22,7 +22,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnCosmo, btnCalendarView, btnMaterial, btnBottomSheet;
+    private Button btnCosmo, btnCalendarView, btnMaterial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCosmo = findViewById(R.id.btnCosmoCalendar);
         btnCalendarView = findViewById(R.id.btnCalendarView);
         btnMaterial = findViewById(R.id.btnMaterialCalendar);
-        btnBottomSheet = findViewById(R.id.btnBottomSheet);
 
 
 
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCosmo.setOnClickListener(this);
         btnCalendarView.setOnClickListener(this);
         btnMaterial.setOnClickListener(this);
-        btnBottomSheet.setOnClickListener(this);
 
     }
 

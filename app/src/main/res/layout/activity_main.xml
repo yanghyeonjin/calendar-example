@@ -38,23 +38,9 @@
         android:layout_marginTop="8dp"
         android:text="material calendar 라이브러리"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/btnBottomSheet"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btnCalendarView"
         app:layout_constraintStart_toStartOf="@+id/btnCalendarView"
         app:layout_constraintTop_toBottomOf="@+id/btnCalendarView" />
-
-    <Button
-        android:id="@+id/btnBottomSheet"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="#5E35B1"
-        android:text="Bottom Sheet"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnMaterialCalendar"
-        app:layout_constraintStart_toStartOf="@+id/btnMaterialCalendar"
-        app:layout_constraintTop_toBottomOf="@+id/btnMaterialCalendar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
