@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rd.PageIndicatorView;
 import com.yanghyeonjin.calendar.R;
 
 import java.util.ArrayList;
@@ -17,10 +18,17 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     private ArrayList<Event> events;
     private Context context;
+    private PageIndicatorView pageIndicatorView;
 
     public EventAdapter(ArrayList<Event> events, Context context) {
         this.events = events;
         this.context = context;
+    }
+
+    public EventAdapter(Context context, ArrayList<Event> events, PageIndicatorView pageIndicatorView) {
+        this.context = context;
+        this.events = events;
+        this.pageIndicatorView = pageIndicatorView;
     }
 
     @NonNull

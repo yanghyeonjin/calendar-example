@@ -16,6 +16,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
+import com.rd.PageIndicatorView;
 import com.yanghyeonjin.calendar.R;
 import com.yarolegovich.discretescrollview.DiscreteScrollView;
 import com.yarolegovich.discretescrollview.transform.Pivot;
@@ -39,6 +40,7 @@ public class MaterialCalendarActivity extends AppCompatActivity {
     private ArrayList<Event> events;
 
     private DiscreteScrollView discreteScrollView;
+    private PageIndicatorView pageIndicatorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class MaterialCalendarActivity extends AppCompatActivity {
         materialCalendar = findViewById(R.id.calendarView);
         // rvEvents = findViewById(R.id.rvEvents);
         discreteScrollView = findViewById(R.id.picker);
+        pageIndicatorView = findViewById(R.id.pageIndicator);
 
 
         // 리사이클러뷰 셋팅
@@ -63,11 +66,11 @@ public class MaterialCalendarActivity extends AppCompatActivity {
         events = new ArrayList<>();
         events.add(new Event("이벤트1"));
         events.add(new Event("이벤트2"));
-        events.add(new Event("이벤트3"));
 
 
-        eventAdapter = new EventAdapter(events, context);
+        // eventAdapter = new EventAdapter(events, context);
         // rvEvents.setAdapter(eventAdapter);
+        eventAdapter = new EventAdapter(context, events, pageIndicatorView);
 
 
         // DiscreteScrollView
@@ -79,6 +82,11 @@ public class MaterialCalendarActivity extends AppCompatActivity {
         .setPivotX(Pivot.X.CENTER)
         .setPivotY(Pivot.Y.BOTTOM)
         .build());
+
+
+        // page indicator
+        pageIndicatorView.setCount(events.size());
+
 
 
         // 타이틀 포맷
@@ -124,6 +132,9 @@ public class MaterialCalendarActivity extends AppCompatActivity {
                 Event event = new Event(date.getDate().toString());
                 events.add(event);
                 eventAdapter.notifyDataSetChanged();
+
+                // page indicator 숫자 동기화
+                pageIndicatorView.setCount(events.size());
             }
         });
 
