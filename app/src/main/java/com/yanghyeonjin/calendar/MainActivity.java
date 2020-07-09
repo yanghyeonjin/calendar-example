@@ -12,8 +12,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.yanghyeonjin.calendar.bottomsheet.BottomSheetActivity;
 import com.yanghyeonjin.calendar.cosmocalendar.CosmoCalendarActivity;
-import com.yanghyeonjin.calendar.kakaolink.KakaoLinkActivity;
 import com.yanghyeonjin.calendar.kizitonwose.CalendarViewActivity;
 import com.yanghyeonjin.calendar.materialcalendarview.MaterialCalendarActivity;
 
@@ -23,7 +23,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnCosmo, btnCalendarView, btnMaterial, btnKakaoLink;
+    private Button btnCosmo, btnCalendarView, btnMaterial, btnBottomSheet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCosmo = findViewById(R.id.btnCosmoCalendar);
         btnCalendarView = findViewById(R.id.btnCalendarView);
         btnMaterial = findViewById(R.id.btnMaterialCalendar);
-        btnKakaoLink = findViewById(R.id.btnKakaoLink);
-
+        btnBottomSheet = findViewById(R.id.btnBottomSheet);
 
 
 
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCosmo.setOnClickListener(this);
         btnCalendarView.setOnClickListener(this);
         btnMaterial.setOnClickListener(this);
-        btnKakaoLink.setOnClickListener(this);
+        btnBottomSheet.setOnClickListener(this);
 
     }
 
@@ -65,9 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent materialIntent = new Intent(MainActivity.this, MaterialCalendarActivity.class);
                 startActivity(materialIntent);
                 break;
-            case R.id.btnKakaoLink:
-                Intent kakaoLinkIntent = new Intent(MainActivity.this, KakaoLinkActivity.class);
-                startActivity(kakaoLinkIntent);
+            case R.id.btnBottomSheet:
+                Intent bottomSheetIntent = new Intent(MainActivity.this, BottomSheetActivity.class);
+                startActivity(bottomSheetIntent);
                 break;
         }
     }
