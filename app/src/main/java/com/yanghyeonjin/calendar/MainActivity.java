@@ -12,7 +12,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.yanghyeonjin.calendar.bottomsheet.BottomSheetActivity;
 import com.yanghyeonjin.calendar.cosmocalendar.CosmoCalendarActivity;
 import com.yanghyeonjin.calendar.kizitonwose.CalendarViewActivity;
 import com.yanghyeonjin.calendar.materialcalendarview.MaterialCalendarActivity;
@@ -63,10 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnMaterialCalendar:
                 Intent materialIntent = new Intent(MainActivity.this, MaterialCalendarActivity.class);
                 startActivity(materialIntent);
-                break;
-            case R.id.btnBottomSheet:
-                Intent bottomSheetIntent = new Intent(MainActivity.this, BottomSheetActivity.class);
-                startActivity(bottomSheetIntent);
                 break;
         }
     }

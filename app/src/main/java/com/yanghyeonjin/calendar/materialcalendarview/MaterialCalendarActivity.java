@@ -1,9 +1,9 @@
 package com.yanghyeonjin.calendar.materialcalendarview;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,14 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
-import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.rd.PageIndicatorView;
 import com.yanghyeonjin.calendar.R;
 import com.yarolegovich.discretescrollview.DiscreteScrollView;
@@ -198,6 +197,18 @@ public class MaterialCalendarActivity extends AppCompatActivity {
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
                 materialCalendar.setSelectedDate(date.getDate());
                 tvCurrentMonth.setText(date.getYear() + "년 " + date.getMonth() + "월");
+            }
+        });
+
+
+
+        // 이벤트 추가 버튼 클릭
+        btnAddEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog dialog = new BottomSheetDialog(context);
+                dialog.setContentView(R.layout.dialog_bottom_sheet);
+                dialog.show();
             }
         });
     }
