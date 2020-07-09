@@ -14,6 +14,7 @@ import android.os.Bundle;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.yanghyeonjin.calendar.R;
 
@@ -111,5 +112,14 @@ public class MaterialCalendarActivity extends AppCompatActivity {
 
         // 처음 들어왔을 때 오늘 날짜에 선택되어 있도록
         materialCalendar.setSelectedDate(LocalDate.now());
+
+
+        // month change 리스너
+        materialCalendar.setOnMonthChangedListener(new OnMonthChangedListener() {
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+                materialCalendar.setSelectedDate(date.getDate());
+            }
+        });
     }
 }
