@@ -119,6 +119,7 @@ public class MaterialCalendarActivity extends AppCompatActivity {
                 }
             }
         });
+        discreteScrollView.setItemTransitionTimeMillis(500);
 
 
         // page indicator
