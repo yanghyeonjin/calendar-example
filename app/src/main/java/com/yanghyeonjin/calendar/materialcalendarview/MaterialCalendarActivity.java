@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,6 +46,9 @@ public class MaterialCalendarActivity extends AppCompatActivity {
     private DiscreteScrollView discreteScrollView;
     private PageIndicatorView pageIndicatorView;
 
+    private TextView tvCurrentMonth;
+    private Button btnAddEvent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +63,8 @@ public class MaterialCalendarActivity extends AppCompatActivity {
         // rvEvents = findViewById(R.id.rvEvents);
         discreteScrollView = findViewById(R.id.picker);
         pageIndicatorView = findViewById(R.id.pageIndicator);
+        tvCurrentMonth = findViewById(R.id.tvCurrentMonth);
+        btnAddEvent =  findViewById(R.id.btnAddEvent);
 
 
         // 리사이클러뷰 셋팅
@@ -128,13 +135,18 @@ public class MaterialCalendarActivity extends AppCompatActivity {
 
 
         // 타이틀 포맷
-        TitleFormatter titleFormatter = new TitleFormatter() {
-            @Override
-            public CharSequence format(CalendarDay day) {
-                return day.getYear() + "년 " + day.getMonth() + "월";
-            }
-        };
-        materialCalendar.setTitleFormatter(titleFormatter);
+//        TitleFormatter titleFormatter = new TitleFormatter() {
+//            @Override
+//            public CharSequence format(CalendarDay day) {
+//                return day.getYear() + "년 " + day.getMonth() + "월";
+//            }
+//        };
+//        materialCalendar.setTitleFormatter(titleFormatter);
+
+        // custom top bar 사용하기 위해 hide 처리
+        materialCalendar.setTopbarVisible(false);
+        CalendarDay currentDate = materialCalendar.getCurrentDate();
+        tvCurrentMonth.setText(currentDate.getYear() + "년 " + currentDate.getMonth() + "월");
 
 
         // add multiple event dots per day
@@ -185,6 +197,7 @@ public class MaterialCalendarActivity extends AppCompatActivity {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
                 materialCalendar.setSelectedDate(date.getDate());
+                tvCurrentMonth.setText(date.getYear() + "년 " + date.getMonth() + "월");
             }
         });
     }
