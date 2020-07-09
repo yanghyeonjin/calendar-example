@@ -1,15 +1,15 @@
 package com.yanghyeonjin.calendar.materialcalendarview;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -17,6 +17,9 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.yanghyeonjin.calendar.R;
+import com.yarolegovich.discretescrollview.DiscreteScrollView;
+import com.yarolegovich.discretescrollview.transform.Pivot;
+import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
 
 import org.threeten.bp.LocalDate;
 
@@ -30,10 +33,12 @@ public class MaterialCalendarActivity extends AppCompatActivity {
     private Context context;
     private Activity activity;
 
-    private RecyclerView rvEvents;
-    private RecyclerView.LayoutManager gridLayoutManager;
+    // private RecyclerView rvEvents;
+    // private RecyclerView.LayoutManager gridLayoutManager;
     private RecyclerView.Adapter eventAdapter;
     private ArrayList<Event> events;
+
+    private DiscreteScrollView discreteScrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +51,14 @@ public class MaterialCalendarActivity extends AppCompatActivity {
 
         // 아이디 연결
         materialCalendar = findViewById(R.id.calendarView);
-        rvEvents = findViewById(R.id.rvEvents);
+        // rvEvents = findViewById(R.id.rvEvents);
+        discreteScrollView = findViewById(R.id.picker);
 
 
         // 리사이클러뷰 셋팅
-        rvEvents.setHasFixedSize(true);
-        gridLayoutManager = new GridLayoutManager(context, 2);
-        rvEvents.setLayoutManager(gridLayoutManager);
+        // rvEvents.setHasFixedSize(true);
+        // gridLayoutManager = new GridLayoutManager(context, 2);
+        // rvEvents.setLayoutManager(gridLayoutManager);
 
         events = new ArrayList<>();
         events.add(new Event("이벤트1"));
@@ -61,7 +67,18 @@ public class MaterialCalendarActivity extends AppCompatActivity {
 
 
         eventAdapter = new EventAdapter(events, context);
-        rvEvents.setAdapter(eventAdapter);
+        // rvEvents.setAdapter(eventAdapter);
+
+
+        // DiscreteScrollView
+        discreteScrollView.setAdapter(eventAdapter);
+        discreteScrollView.setSlideOnFling(true); // 슬라이드 한 번 했을 때, 여러 개 아이템 슬라이드 되도록 설정
+        discreteScrollView.setItemTransformer(new ScaleTransformer.Builder()
+        .setMaxScale(1.05f)
+        .setMinScale(0.8f)
+        .setPivotX(Pivot.X.CENTER)
+        .setPivotY(Pivot.Y.BOTTOM)
+        .build());
 
 
         // 타이틀 포맷

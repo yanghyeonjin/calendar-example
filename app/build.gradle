@@ -37,7 +37,10 @@ dependencies {
     implementation 'com.github.applikeysolutions:cosmocalendar:1.0.4'
 
     // 카드뷰
-    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    // 스크롤뷰 라이브러리
+    implementation 'com.yarolegovich:discrete-scrollview:1.4.9'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
