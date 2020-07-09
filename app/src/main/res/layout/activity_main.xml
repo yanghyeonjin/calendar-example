@@ -22,7 +22,7 @@
         android:id="@+id/btnCalendarView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="calendar view 라이브러리"
         app:layout_constraintBottom_toTopOf="@+id/btnMaterialCalendar"
         app:layout_constraintEnd_toEndOf="@+id/btnCosmoCalendar"
@@ -33,11 +33,23 @@
         android:id="@+id/btnMaterialCalendar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="material calendar 라이브러리"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnKakaoLink"
         app:layout_constraintEnd_toEndOf="@+id/btnCalendarView"
         app:layout_constraintStart_toStartOf="@+id/btnCalendarView"
         app:layout_constraintTop_toBottomOf="@+id/btnCalendarView" />
+
+    <Button
+        android:id="@+id/btnKakaoLink"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#FDD835"
+        android:text="카카오링크"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnMaterialCalendar"
+        app:layout_constraintStart_toStartOf="@+id/btnMaterialCalendar"
+        app:layout_constraintTop_toBottomOf="@+id/btnMaterialCalendar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
