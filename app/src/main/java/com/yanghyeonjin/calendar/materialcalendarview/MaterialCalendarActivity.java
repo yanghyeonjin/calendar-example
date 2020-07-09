@@ -3,9 +3,11 @@ package com.yanghyeonjin.calendar.materialcalendarview;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -82,6 +84,38 @@ public class MaterialCalendarActivity extends AppCompatActivity {
         .setPivotX(Pivot.X.CENTER)
         .setPivotY(Pivot.Y.BOTTOM)
         .build());
+        discreteScrollView.addScrollStateChangeListener(new DiscreteScrollView.ScrollStateChangeListener<RecyclerView.ViewHolder>() {
+            @Override
+            public void onScrollStart(@NonNull RecyclerView.ViewHolder viewHolder, int adapterPosition) {
+                //called when scroll is started, including programmatically initiated scroll
+            }
+
+            @Override
+            public void onScrollEnd(@NonNull RecyclerView.ViewHolder viewHolder, int adapterPosition) {
+                //called when scroll ends
+            }
+
+            /**
+             * Called when scroll is in progress.
+             * @param scrollPosition is a value inside the interval [-1f..1f], it corresponds to the position of currentlySelectedView.
+             * In idle state:
+             * |view1|  |currentlySelectedView|  |view2|
+             * -view1 is on position -1;
+             * -currentlySelectedView is on position 0;
+             * -view2 is on position 1.
+             * @param currentIndex - index of current view
+             * @param newIndex - index of a view which is becoming the new current
+             * @param currentHolder - ViewHolder of a current view
+             * @param newCurrentHolder - ViewHolder of a view which is becoming the new current
+             */
+            @Override
+            public void onScroll(float scrollPosition, int currentIndex, int newIndex, @Nullable RecyclerView.ViewHolder currentHolder, @Nullable RecyclerView.ViewHolder newCurrentHolder) {
+                // 스크롤 시, 아이템 위치에 맞게 page indicator 설정
+                if (newCurrentHolder != null) {
+                    pageIndicatorView.setSelection(newCurrentHolder.getAdapterPosition());
+                }
+            }
+        });
 
 
         // page indicator
