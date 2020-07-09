@@ -207,7 +207,7 @@ public class MaterialCalendarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Dialog dialog = new BottomSheetDialog(context);
-                dialog.setContentView(R.layout.dialog_bottom_sheet);
+                dialog.setContentView(R.layout.layout_bottom_sheet);
                 dialog.show();
             }
         });
