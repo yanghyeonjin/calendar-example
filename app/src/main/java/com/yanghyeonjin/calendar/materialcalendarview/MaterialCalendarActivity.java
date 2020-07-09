@@ -72,7 +72,7 @@ public class MaterialCalendarActivity extends AppCompatActivity {
 
         // eventAdapter = new EventAdapter(events, context);
         // rvEvents.setAdapter(eventAdapter);
-        eventAdapter = new EventAdapter(context, events, pageIndicatorView);
+        eventAdapter = new EventAdapter(context, events, pageIndicatorView, discreteScrollView);
 
 
         // DiscreteScrollView
@@ -93,6 +93,9 @@ public class MaterialCalendarActivity extends AppCompatActivity {
             @Override
             public void onScrollEnd(@NonNull RecyclerView.ViewHolder viewHolder, int adapterPosition) {
                 //called when scroll ends
+
+                // 다음으로 넘어가려다가 못넘어갔을 때 indicator 처리
+                pageIndicatorView.setSelection(adapterPosition);
             }
 
             /**
