@@ -1,6 +1,7 @@
 package com.yanghyeonjin.calendar.weekcalendar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.yanghyeonjin.calendar.R;
 
 import org.threeten.bp.LocalDate;
+
+import java.util.ArrayList;
 
 public class WeekCalendarActivity extends AppCompatActivity {
 
@@ -42,8 +45,18 @@ public class WeekCalendarActivity extends AppCompatActivity {
         // 처음 들어왔을 때 오늘 날짜에 선택되어 있도록
         weekCalendar.setSelectedDate(LocalDate.now());
 
-        // 주말 highlight
-        weekCalendar.addDecorators(new SaturdayDecorator(), new SundayDecorator(context));
+        // dot 표시할 날짜들
+        ArrayList<CalendarDay> dotDates = new ArrayList<>();
+        dotDates.add(CalendarDay.from(2020, 7,5));
+        dotDates.add(CalendarDay.from(2020, 7,6));
+        dotDates.add(CalendarDay.from(2020, 7,7));
+        dotDates.add(CalendarDay.from(2020, 7,8));
+
+        // add decorator
+        // 일요일 표시, 토요일 표시, dot 표시
+        weekCalendar.addDecorator(new SaturdayDecorator());
+        weekCalendar.addDecorator(new SundayDecorator(context));
+        weekCalendar.addDecorator(new DotDecorator(ContextCompat.getColor(context, R.color.materialCalDotColor), dotDates));
 
         // week change 리스너
         weekCalendar.setOnMonthChangedListener(new OnMonthChangedListener() {
