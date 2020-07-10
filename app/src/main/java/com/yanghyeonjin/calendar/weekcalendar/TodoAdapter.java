@@ -1,6 +1,7 @@
 package com.yanghyeonjin.calendar.weekcalendar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yanghyeonjin.calendar.R;
@@ -45,12 +47,24 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     public class TodoViewHolder extends RecyclerView.ViewHolder {
         private CheckBox checkTodo;
         private TextView tvTodo;
+        private CardView todo;
 
         public TodoViewHolder(@NonNull View itemView) {
             super(itemView);
 
             checkTodo = itemView.findViewById(R.id.checkTodo);
             tvTodo = itemView.findViewById(R.id.tvTodo);
+            todo = itemView.findViewById(R.id.todo);
+
+
+            // 할 일 클릭
+            todo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent todoIntent = new Intent(context, TodoDetailActivity.class);
+                    context.startActivity(todoIntent);
+                }
+            });
         }
     }
 }
