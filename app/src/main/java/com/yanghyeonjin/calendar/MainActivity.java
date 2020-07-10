@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // 키 해시 알아내기
-        getHashKey();
+        // getHashKey();
 
         // 아이디 연결
         btnCosmo = findViewById(R.id.btnCosmoCalendar);
