@@ -2,6 +2,8 @@ package com.yanghyeonjin.calendar.weekcalendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -23,6 +25,11 @@ public class WeekCalendarActivity extends AppCompatActivity {
 
     private Context context;
 
+    private RecyclerView rvTodoList;
+    private RecyclerView.Adapter todoAdapter;
+    private RecyclerView.LayoutManager todoLayoutManager;
+    private ArrayList<Todo> todoList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +41,7 @@ public class WeekCalendarActivity extends AppCompatActivity {
         // 아이디 연결
         weekCalendar = findViewById(R.id.weekCalendar);
         tvCurrentMonth = findViewById(R.id.tvCurrentMonth);
+        rvTodoList = findViewById(R.id.rvTodoList);
 
 
         // calendar 셋팅
@@ -66,5 +74,25 @@ public class WeekCalendarActivity extends AppCompatActivity {
                 tvCurrentMonth.setText(date.getYear() + "년 " + date.getMonth() + "월");
             }
         });
+
+
+
+
+
+
+
+        // 리사이클러뷰 셋팅
+        rvTodoList.setHasFixedSize(true);
+        todoLayoutManager = new LinearLayoutManager(context);
+        rvTodoList.setLayoutManager(todoLayoutManager);
+
+        todoList = new ArrayList<>();
+        todoList.add(new Todo(false, "할 일 1"));
+        todoList.add(new Todo(false, "할 일 2"));
+        todoList.add(new Todo(true, "할 일 3"));
+        todoList.add(new Todo(false, "할 일 4"));
+
+        todoAdapter = new TodoAdapter(context, todoList);
+        rvTodoList.setAdapter(todoAdapter);
     }
 }
