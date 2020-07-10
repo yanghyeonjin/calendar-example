@@ -9,6 +9,7 @@
     <color name="materialCalSelectedBgColor">#66FF8A80</color>
     <color name="materialCalDotColor">#BAFF8A80</color>
     <color name="materialCalEventBgColor">#C5CAE9</color>
+    <color name="sundayColor">#D50000</color>
 
 
     <!-- kizitonwose calendar -->

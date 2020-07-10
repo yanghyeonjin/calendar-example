@@ -42,6 +42,9 @@ public class WeekCalendarActivity extends AppCompatActivity {
         // 처음 들어왔을 때 오늘 날짜에 선택되어 있도록
         weekCalendar.setSelectedDate(LocalDate.now());
 
+        // 주말 highlight
+        weekCalendar.addDecorators(new SaturdayDecorator(), new SundayDecorator(context));
+
         // week change 리스너
         weekCalendar.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
