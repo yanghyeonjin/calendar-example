@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.yanghyeonjin.calendar.R;
 
 import org.threeten.bp.LocalDate;
@@ -40,5 +41,14 @@ public class WeekCalendarActivity extends AppCompatActivity {
 
         // 처음 들어왔을 때 오늘 날짜에 선택되어 있도록
         weekCalendar.setSelectedDate(LocalDate.now());
+
+        // week change 리스너
+        weekCalendar.setOnMonthChangedListener(new OnMonthChangedListener() {
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+                weekCalendar.setSelectedDate(date.getDate());
+                tvCurrentMonth.setText(date.getYear() + "년 " + date.getMonth() + "월");
+            }
+        });
     }
 }
