@@ -104,11 +104,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
                 @Override
                 public void onClick(View view) {
                     int curPos = getAdapterPosition();
+                    Todo todoBefore = todoList.get(curPos); // 지울 아이템 복사해두기
 
                     if (((CheckBox) view).isChecked()) {
                         // 체크 되었을 때
-                        // 체크한 아이템 복사해서 isComplete만 바꾼 새로운 아이템 생성
-                        Todo todoBefore = todoList.get(curPos);
+                        // isComplete만 바꾼 새로운 아이템 생성
                         Todo todoAfter = new Todo(true, todoBefore.getTodoTitle());
 
                         // 해당 포지션에 있는 아이템 삭제 후, 맨 아래에 데이터 추가 -> 아래로 이동한 것처럼 보이도록
@@ -119,8 +119,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
                         notifyItemRemoved(curPos);
                         notifyItemInserted(getItemCount() - 1);
                     } else {
-                        todoList.get(curPos).setComplete(false);
-                        notifyItemChanged(curPos); // 아이템의 데이터가 변경되었음을 알림.
+                        // 체크 해제 되었을 때, 가장 상단으로 이동
+                        Todo todoAfter = new Todo(false, todoBefore.getTodoTitle());
+
+                        todoList.remove(todoBefore);
+                        todoList.add(0, todoAfter);
+
+                        notifyItemRemoved(curPos);
+                        notifyItemInserted(0);
                     }
                 }
             });
