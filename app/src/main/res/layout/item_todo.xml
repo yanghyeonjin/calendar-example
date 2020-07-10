@@ -13,68 +13,82 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/todo"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checkable="true"
-        android:clickable="true"
-        android:focusable="true"
-        app:contentPadding="16dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="@android:color/darker_gray"
-        app:cardElevation="0dp">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/todo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:contentPadding="16dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@android:color/darker_gray"
+            app:cardElevation="0dp">
 
-            <!-- Title, secondary and supporting text -->
-            <TextView
-                android:id="@+id/tvTodo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Title"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Secondary text"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Greyhoud divisively hello coldly wonderfully marginally far upon excluding."
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
-                />
-
-            <!-- Buttons -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Action 1"
-                    style="?attr/borderlessButtonStyle"
-                    />
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Action 2"
-                    style="?attr/borderlessButtonStyle"
-                    />
-            </LinearLayout>
-        </LinearLayout>
+                android:orientation="vertical">
 
-    </com.google.android.material.card.MaterialCardView>
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:id="@+id/tvTodo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Secondary text"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Greyhoud divisively hello coldly wonderfully marginally far upon excluding."
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+
+                <!-- Buttons -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Action 1"
+                        style="?attr/borderlessButtonStyle"
+                        />
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Action 2"
+                        style="?attr/borderlessButtonStyle"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 완료된 할 일 흐릿하게 처리할 뷰-->
+        <!-- 높이는 동적 계산 -->
+        <View
+            android:id="@+id/vBlur"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"/>
+    </FrameLayout>
+
 </LinearLayout>
