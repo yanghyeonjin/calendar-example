@@ -17,6 +17,9 @@ import com.yanghyeonjin.calendar.R;
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class WeekCalendarActivity extends AppCompatActivity {
 
@@ -86,11 +89,22 @@ public class WeekCalendarActivity extends AppCompatActivity {
         todoLayoutManager = new LinearLayoutManager(context);
         rvTodoList.setLayoutManager(todoLayoutManager);
 
+
+        // 리사이클러뷰 아이템 설정
         todoList = new ArrayList<>();
         todoList.add(new Todo(false, "할 일 1"));
         todoList.add(new Todo(false, "할 일 2"));
         todoList.add(new Todo(true, "할 일 3"));
         todoList.add(new Todo(false, "할 일 4"));
+
+        // isComplete == true 아이템들 하단으로 정렬
+        // 서버 쪽에서 정렬된 데이터를 보내주도록 하자.
+        Collections.sort(todoList, new Comparator<Todo>() {
+            @Override
+            public int compare(Todo todo, Todo t1) {
+                return Boolean.compare(todo.isComplete(), t1.isComplete());
+            }
+        });
 
         todoAdapter = new TodoAdapter(context, todoList);
         rvTodoList.setAdapter(todoAdapter);
