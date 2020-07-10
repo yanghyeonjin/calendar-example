@@ -16,6 +16,7 @@ import com.yanghyeonjin.calendar.cosmocalendar.CosmoCalendarActivity;
 import com.yanghyeonjin.calendar.kizitonwose.CalendarViewActivity;
 import com.yanghyeonjin.calendar.materialcalendarview.MaterialCalendarActivity;
 import com.yanghyeonjin.calendar.share.ShareActivity;
+import com.yanghyeonjin.calendar.weekcalendar.WeekCalendarActivity;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -23,7 +24,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnCosmo, btnCalendarView, btnMaterial, btnShare;
+    private Button btnCosmo, btnCalendarView, btnMaterial, btnShare, btnMaterialWeek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCalendarView = findViewById(R.id.btnCalendarView);
         btnMaterial = findViewById(R.id.btnMaterialCalendar);
         btnShare = findViewById(R.id.btnShare);
+        btnMaterialWeek = findViewById(R.id.btnMaterialCalendarWeek);
 
 
 
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCalendarView.setOnClickListener(this);
         btnMaterial.setOnClickListener(this);
         btnShare.setOnClickListener(this);
+        btnMaterialWeek.setOnClickListener(this);
 
     }
 
@@ -67,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnShare:
                 Intent shareIntent = new Intent(MainActivity.this, ShareActivity.class);
                 startActivity(shareIntent);
+                break;
+            case R.id.btnMaterialCalendarWeek:
+                Intent materialWeekIntent = new Intent(MainActivity.this, WeekCalendarActivity.class);
+                startActivity(materialWeekIntent);
                 break;
         }
     }
