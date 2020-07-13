@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,27 @@ public class ShareActivity extends AppCompatActivity {
         });
 
 
+
+        // 이메일 앱으로 공유하기
+        Button btnShareEmail = findViewById(R.id.btnShareEmail);
+        btnShareEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    String deviceAppVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+
+                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                    emailIntent.setType("plain/text");
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {"guswls7081@gmail.com"});
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "<" + getString(R.string.app_name) + " 문의 및 건의사항>");
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, "앱 버전 (AppVersion):" + deviceAppVersion + "\n기기명 (Device):\n안드로이드 OS (Android OS):\n내용 (Content):\n");
+                    emailIntent.setType("message/rfc822");
+                    startActivity(emailIntent);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     // Deep Link 생성
